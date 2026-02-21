@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import markdown2
 from . import util
 
 
@@ -16,7 +16,9 @@ def entry(request, title):
             "message": "A página '{title}' não foi encontrada."
         })
     
+    conteudo_convertido = markdown2.markdown(conteudo)
+    
     return render(request, "encyclopedia/entry.html", {
         "title": title,
-        "content": conteudo
+        "content": conteudo_convertido
     })
