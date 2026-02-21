@@ -18,5 +18,5 @@ def entry(request, title):
     
     return render(request, "encyclopedia/entry.html", {
         "title": title,
-        "conteudo": conteudo
+        "content": conteudo
     })
