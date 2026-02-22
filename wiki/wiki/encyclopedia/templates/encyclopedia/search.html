@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Resultados da Pesquisa
+{% endblock %}
+
+{% block body %}
+    <h1>Resultados para: "{{ query }}"</h1>
+
+    {% if resultados %}
+        <ul>
+            {% for resultado in resultados %}
+                <li><a href="{% url 'entry' resultado %}">{{ resultado }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma página encontrada contendo o termo digitado.</p>
+    {% endif %}
+
+{% endblock %}
