@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import markdown2
 from . import util
+import random
 
 
 def index(request):
@@ -41,3 +42,10 @@ def search(request):
         "resultados": resultados_parciais,
         "query": query
     })
+
+def random_page(request):
+    todas_paginas = util.list_entries()
+
+    pagina_sorteada = random.choice(todas_paginas)
+
+    return redirect('entry', title=pagina_sorteada)
