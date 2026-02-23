@@ -49,3 +49,19 @@ def random_page(request):
     pagina_sorteada = random.choice(todas_paginas)
 
     return redirect('entry', title=pagina_sorteada)
+
+def create(request):
+    if request.method == "POST":
+        titulo = request.POST.get("title")
+        conteudo = request.POST.get("content")
+
+        if util.get_entry(titulo) is not None:
+            return render(request, "encyclopedia/error.html", {
+                "message": f"Erro: A enciclopédia já possui um artigo chamado '{titulo}'."
+            })
+        else:
+            util.save_entry(titulo, conteudo)
+            
+            return redirect('entry', title=titulo)
+        
+    return render(request, "encyclopedia/create.html")

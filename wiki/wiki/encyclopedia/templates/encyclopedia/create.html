@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Page</h1>
+
+    <form action="{% url 'create' %}" method="post">
+        
+        {% csrf_token %} <div style="margin-bottom: 15px;">
+            <label><strong>Title:</strong></label><br>
+            <input type="text" name="title" placeholder="Ex: Linguagens Formais" required style="width: 100%; max-width: 400px; padding: 5px;">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <label><strong>Markdown Content:</strong></label><br>
+            <textarea name="content" rows="10" placeholder="Digite o conteúdo em Markdown aqui..." required style="width: 100%; padding: 5px;"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Page</button>
+    </form>
+{% endblock %}
