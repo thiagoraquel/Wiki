@@ -65,3 +65,17 @@ def create(request):
             return redirect('entry', title=titulo)
         
     return render(request, "encyclopedia/create.html")
+
+def edit(request, title):
+    if request.method == "POST":
+        novo_conteudo = request.POST.get("content")
+        util.save_entry(title, novo_conteudo)
+        return redirect('entry', title=title)
+    
+    else:
+        conteudo_original = util.get_entry(title)
+
+        return render(request, "encyclopedia/edit.html", {
+            "title": title,
+            "content": conteudo_original
+    })
